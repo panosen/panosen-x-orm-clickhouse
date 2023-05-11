@@ -45,7 +45,7 @@ public class EntityMapper<TEntity> implements Mapper<TEntity> {
         if (clazz.equals(String.class)) {
             field.set(entity, clickHouseValue.asString());
         } else if (clazz.equals(BigDecimal.class)) {
-            field.set(entity, clickHouseValue.asBigDecimal());
+            field.set(entity, clickHouseValue.isNullOrEmpty() ? null : new BigDecimal(clickHouseValue.asString()));
         } else if (clazz.equals(LocalDateTime.class)) {
             field.set(entity, clickHouseValue.asDateTime());
         }
