@@ -6,7 +6,7 @@
 
     <groupId>com.panosen</groupId>
     <artifactId>panosen-orm-clickhouse</artifactId>
-    <version>0.0.3</version>
+    <version>0.0.4</version>
 
     <parent>
         <groupId>com.panosen</groupId>
@@ -76,11 +76,6 @@
             <groupId>com.panosen</groupId>
             <artifactId>panosen-codedom-clickhouse</artifactId>
             <version>0.0.2</version>
-        </dependency>
-
-        <dependency>
-            <groupId>javax.servlet</groupId>
-            <artifactId>javax.servlet-api</artifactId>
         </dependency>
 
     </dependencies>

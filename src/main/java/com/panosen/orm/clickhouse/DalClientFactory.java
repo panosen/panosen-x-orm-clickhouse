@@ -34,22 +34,4 @@ public class DalClientFactory {
         DataSource dataSource = DataSourceLocator.getDataSource(logicDbName);
         return new DalClient(dataSource);
     }
-
-    /**
-     * 加载配置
-     */
-    public static void startup() {
-    }
-
-    /**
-     * 预热连接
-     */
-    public static void ignite() {
-    }
-
-    /**
-     * 停止
-     */
-    public static void shutdown() {
-    }
 }
