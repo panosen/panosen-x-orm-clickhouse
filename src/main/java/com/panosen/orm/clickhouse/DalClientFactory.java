@@ -2,6 +2,7 @@ package com.panosen.orm.clickhouse;
 
 import java.io.IOException;
 import java.util.Map;
+import java.util.Properties;
 import java.util.concurrent.ConcurrentHashMap;
 
 public class DalClientFactory {
@@ -31,7 +32,16 @@ public class DalClientFactory {
     }
 
     private static DalClient getClientNow(String logicDbName) throws IOException {
-        DataSource dataSource = DataSourceLocator.getDataSource(logicDbName);
+        return getClientNow(logicDbName, new Properties());
+    }
+
+    private static DalClient getClientNow(String logicDbName, Properties properties) throws IOException {
+        DataSource dataSource = DataSourceLocator.getDataSource(logicDbName, properties);
         return new DalClient(dataSource);
+    }
+
+    public static void registerClient(String logicDbName, Properties properties) throws IOException {
+        DalClient dalClient = getClientNow(logicDbName, properties);
+        DalClientMap.put(logicDbName, dalClient);
     }
 }
