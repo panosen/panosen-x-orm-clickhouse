@@ -23,7 +23,7 @@ public class ExecuteQuery<T> extends Execute<T> {
         try (ClickHouseClient client = ClickHouseClient.newInstance(ClickHouseProtocol.HTTP)) {
             ClickHouseRequest<?> clickHouseRequest = client.read(node).format(ClickHouseFormat.TabSeparatedWithNamesAndTypes);
             try (ClickHouseResponse response = clickHouseRequest.query(sql).params(parameters.getValues()).executeAndWait()) {
-                T result = extractor.extract(response.records());
+                T result = extractor.extract(response.getColumns(), response.records());
                 return result;
             }
         }

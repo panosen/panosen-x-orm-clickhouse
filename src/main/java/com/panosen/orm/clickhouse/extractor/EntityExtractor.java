@@ -1,9 +1,11 @@
 package com.panosen.orm.clickhouse.extractor;
 
+import com.clickhouse.data.ClickHouseColumn;
 import com.clickhouse.data.ClickHouseRecord;
 import com.panosen.orm.clickhouse.mapper.Mapper;
 
 import java.util.Iterator;
+import java.util.List;
 
 public class EntityExtractor<TEntity> implements Extractor<TEntity> {
 
@@ -14,7 +16,7 @@ public class EntityExtractor<TEntity> implements Extractor<TEntity> {
     }
 
     @Override
-    public TEntity extract(Iterable<ClickHouseRecord> records) throws ReflectiveOperationException {
+    public TEntity extract(List<ClickHouseColumn> columns, Iterable<ClickHouseRecord> records) throws ReflectiveOperationException {
         if (records == null) {
             return null;
         }
@@ -22,6 +24,6 @@ public class EntityExtractor<TEntity> implements Extractor<TEntity> {
         if (!iterator.hasNext()) {
             return null;
         }
-        return mapper.map(iterator.next());
+        return mapper.map(columns, iterator.next());
     }
 }

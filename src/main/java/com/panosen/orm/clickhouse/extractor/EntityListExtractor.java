@@ -1,5 +1,6 @@
 package com.panosen.orm.clickhouse.extractor;
 
+import com.clickhouse.data.ClickHouseColumn;
 import com.clickhouse.data.ClickHouseRecord;
 import com.panosen.orm.clickhouse.mapper.Mapper;
 
@@ -15,10 +16,10 @@ public class EntityListExtractor<TEntity> implements Extractor<List<TEntity>> {
     }
 
     @Override
-    public List<TEntity> extract(Iterable<ClickHouseRecord> records) throws ReflectiveOperationException {
+    public List<TEntity> extract(List<ClickHouseColumn> columns, Iterable<ClickHouseRecord> records) throws ReflectiveOperationException {
         List<TEntity> result = new ArrayList<>();
         for (ClickHouseRecord record : records) {
-            result.add(mapper.map(record));
+            result.add(mapper.map(columns, record));
         }
         return result;
     }
