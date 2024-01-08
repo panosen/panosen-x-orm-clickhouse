@@ -1,5 +1,6 @@
 package com.panosen.orm.clickhouse;
 
+import com.panosen.codedom.clickhouse.Parameter;
 import com.panosen.codedom.clickhouse.Parameters;
 import com.panosen.codedom.clickhouse.builder.SelectSqlBuilder;
 import com.panosen.codedom.clickhouse.engine.GenerationResponse;
@@ -23,6 +24,9 @@ public class DalClientExtension {
 
         Parameters parameters = generationResponse.getParameters();
         logger.info("parameters.size() = " + parameters.size());
+        for (Parameter parameter : parameters) {
+            logger.info(parameter.getValue().toString());
+        }
 
         final EntityListExtractor<TEntity> extractor = new EntityListExtractor<>(mapper);
 
@@ -36,6 +40,9 @@ public class DalClientExtension {
 
         Parameters parameters = generationResponse.getParameters();
         logger.info("parameters.size() = " + parameters.size());
+        for (Parameter parameter : parameters) {
+            logger.info(parameter.getValue().toString());
+        }
 
         final EntityExtractor<TEntity> extractor = new EntityExtractor<>(mapper);
 
