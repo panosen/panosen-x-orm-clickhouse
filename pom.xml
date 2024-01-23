@@ -6,7 +6,7 @@
 
     <groupId>com.panosen</groupId>
     <artifactId>panosen-orm-clickhouse</artifactId>
-    <version>0.0.8</version>
+    <version>0.0.9</version>
 
     <parent>
         <groupId>com.panosen</groupId>
